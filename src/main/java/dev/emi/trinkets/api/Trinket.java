@@ -76,6 +76,11 @@ public interface Trinket {
 		return !EnchantmentHelper.hasBindingCurse(stack);
 	}
 
+	    @Override
+    public boolean canUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        return !(EnchantmentHelper.hasBindingCurse(stack) && EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(entity));
+    }
+
 	/**
 	 * Returns the Entity Attribute Modifiers for a stack in a slot. Child implementations should
 	 * remain pure
